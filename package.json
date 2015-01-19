@@ -1,0 +1,7 @@
+{
+  "name": "angularity-todo-es5",
+  "private": true,
+  "dependencies": {
+    "node-bourbon": "latest"
+  }
+}

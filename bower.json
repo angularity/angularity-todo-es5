@@ -1,0 +1,17 @@
+{
+  "name": "angularity-todo-es5",
+  "private": true,
+  "dependencies": {
+    "jQuery": "latest",
+    "angular": "latest",
+    "bootstrap-sass-official": ">=3.3.0",
+    "angular-bootstrap": "latest",
+    "angular-ui-router": "latest"
+  },
+  "devDependencies": {
+    "angular-mocks": "latest"
+  },
+  "bundledDependencies": [
+    "examplelib"
+  ]
+}
