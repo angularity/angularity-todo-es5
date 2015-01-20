@@ -10,7 +10,6 @@ function TodoController($scope, $filter, $state, storage) {
   $scope.todos               = storage.get() || [];
   $scope.newTodo             = '';
   $scope.editedTodo          = undefined;
-  $scope.storage             = storage;
   $scope.remainingCount      = 0;
   $scope.completedCount      = 0;
   $scope.allChecked          = false;
@@ -19,7 +18,7 @@ function TodoController($scope, $filter, $state, storage) {
   $scope.addTodo             = addTodo;
   $scope.editTodo            = editTodo;
   $scope.doneEditing         = doneEditing;
-  $scope.revertEditing       = doneEditing;
+  $scope.revertEditing       = revertEditing;
   $scope.testEditing         = testEditing;
   $scope.removeTodo          = removeTodo;
   $scope.clearCompletedTodos = clearCompletedTodos;
@@ -121,11 +120,11 @@ function TodoController($scope, $filter, $state, storage) {
    * @param {Array.<object>} oldValue The previous value of the list
    */
   function watchTodos(newValue, oldValue) {
-    $scope.remainingCount = $scope.$filter('filter')($scope.todos, {completed: false}).length;
+    $scope.remainingCount = $filter('filter')($scope.todos, {completed: false}).length;
     $scope.completedCount = $scope.todos.length - $scope.remainingCount;
     $scope.allChecked     = !$scope.remainingCount;
     if (newValue !== oldValue) {
-      $scope.storage.put($scope.todos);
+      storage.put($scope.todos);
     }
   }
 
@@ -133,7 +132,7 @@ function TodoController($scope, $filter, $state, storage) {
    * <p>State change handler that implements a filter based on state parameters.</p>
    */
   function onFilterChange() {
-    switch ($scope.$state.params.status) {
+    switch ($state.params.status) {
       case 'active':
         $scope.status = 'active';
         $scope.statusFilter = {completed: false};
