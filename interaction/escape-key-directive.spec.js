@@ -1,7 +1,7 @@
 /* globals angular, describe, beforeEach, inject, it, expect, spyOn */
 /* jshint sub:true */
 
-var escapeKeyDirective = require('examplelib/interaction/escapeKeyDirective');
+var escapeKeyDirective = require('examplelib/interaction/escape-key-directive');
 
 describe('@', function() {
   'use strict';

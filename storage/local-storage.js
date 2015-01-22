@@ -1,6 +1,6 @@
 /* globals localStorage */
 
-var MockStorage = require('./MockStorage');
+var MockStorage = require('./mock-storage');
 
 /**
  * <p>Store a single value in HTML5 local storage.</p>

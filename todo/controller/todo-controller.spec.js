@@ -1,8 +1,8 @@
 /* globals angular, describe, beforeEach, inject, it, expect, jasmine */
 /* jshint sub:true */
 
-var TodoController = require('./TodoController'),
-    MockStorage    = require('../../storage/MockStorage');
+var TodoController = require('./todo-controller'),
+    MockStorage    = require('../../storage/mock-storage');
 
 describe('@', function() {
   'use strict';

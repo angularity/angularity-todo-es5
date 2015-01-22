@@ -1,6 +1,3 @@
-var template       = require('./partial/todo.html'),
-    TodoController = require('./controller/TodoController');
-
 /**
  * <p>Routing for the to-do app.</p>
  * @ngInject
@@ -13,8 +10,8 @@ function todoRoutes($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('home', {
       url:        '/:status',
-      template:   template,
-      controller: TodoController
+      template:   require('./view/todo.html'),
+      controller: require('./controller/todo-controller')
     });
 }
 module.exports = todoRoutes;
