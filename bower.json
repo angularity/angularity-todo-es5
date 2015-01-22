@@ -4,7 +4,7 @@
   "dependencies": {
     "jQuery": "latest",
     "angular": "latest",
-    "bootstrap-sass-official": ">=3.3.0",
+    "bootstrap-sass-official": "3.3.0",
     "angular-bootstrap": "latest",
     "angular-ui-router": "latest"
   },
@@ -13,5 +13,8 @@
   },
   "bundledDependencies": [
     "examplelib"
-  ]
+  ],
+  "resolutions": {
+    "angular": "1.2.28"
+  }
 }
