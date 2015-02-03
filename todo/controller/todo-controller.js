@@ -1,5 +1,3 @@
-/* global angular:false */
-
 /**
  * <p>Controller for the to-do application.</p>
  * @ngInject

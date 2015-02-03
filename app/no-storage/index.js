@@ -1,4 +1,3 @@
-/* global angular:false */
 
 require('../index.js');
 

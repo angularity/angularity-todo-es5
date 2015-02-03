@@ -1,4 +1,3 @@
-/* global angular:false */
 
 var todoRoutes            = require('../todo/todo-routes'),
     escapeKeyDirective    = require('examplelib/interaction/escape-key-directive'),

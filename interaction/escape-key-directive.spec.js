@@ -1,5 +1,4 @@
-/* globals angular, describe, beforeEach, inject, it, expect, spyOn */
-/* jshint sub:true */
+/* globals describe, beforeEach, inject, it, expect, spyOn */
 
 var escapeKeyDirective = require('examplelib/interaction/escape-key-directive');
 
@@ -11,7 +10,7 @@ describe('@', function() {
 
   // mappings
   angular.module('@', [ ])
-    ['directive']('escape', escapeKeyDirective.forAttribute('escape'));
+    .directive('escape', escapeKeyDirective.forAttribute('escape'));
 
   // our temporary module
   beforeEach(angular.mock.module('@'));
