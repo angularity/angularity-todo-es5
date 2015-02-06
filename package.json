@@ -4,5 +4,8 @@
   "private": true,
   "dependencies": {
     "node-bourbon": "latest"
-  }
+  },
+  "bundledDependencies": [
+    "examplelib"
+  ]
 }
