@@ -6,7 +6,7 @@
  */
 function todoRoutes($stateProvider, $urlRouterProvider) {
   'use strict';
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/')
   $stateProvider
     .state('home', {
       url:        '/:status',
