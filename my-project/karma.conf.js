@@ -16,7 +16,7 @@ exclude = [];
 reporters = [];
 
 // web server port
-port = 55555;
+port = 63435;
 
 // enable / disable colors in the output (reporters and logs)
 colors = true;
