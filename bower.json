@@ -8,7 +8,6 @@
     "bootstrap-sass-official": "3.3.0",
     "angular-bootstrap": "latest",
     "angular-ui-router": "latest"
-
   },
   "devDependencies": {
     "angular-mocks": "latest"
