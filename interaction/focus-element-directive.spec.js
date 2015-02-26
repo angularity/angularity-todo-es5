@@ -3,8 +3,6 @@
 var focusElementDirective = require('examplelib/interaction/focus-element-directive');
 
 describe('@', function() {
-  'use strict';
-
   var scope;
   var element;
   var timeout;

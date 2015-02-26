@@ -3,8 +3,6 @@
 var escapeKeyDirective = require('examplelib/interaction/escape-key-directive');
 
 describe('@', function() {
-  'use strict';
-
   var scope;
   var element;
 
