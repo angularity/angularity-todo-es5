@@ -26,7 +26,7 @@ describe('@', function() {
   }));
 
   it('should have the given scope', function() {
-    expect(element.scope()).toBe(null);
+    expect(element.scope()).toBe(scope);
   });
 
   it('should hook ESC keydown on the element', function() {
