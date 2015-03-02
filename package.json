@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "node-bourbon": "latest"
+    "node-bourbon": "1.2.2"
   },
   "bundledDependencies": [
     "examplelib"
