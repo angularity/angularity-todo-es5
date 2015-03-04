@@ -2,16 +2,16 @@
 
 var escapeKeyDirective = require('examplelib/interaction/escape-key-directive');
 
-describe('@', function() {
+describe('escape-key-directive', function() {
   var scope;
   var element;
 
   // mappings
-  angular.module('@', [ ])
+  angular.module('escape-key-directive', [ ])
     .directive('escape', escapeKeyDirective.forAttribute('escape'));
 
   // our temporary module
-  beforeEach(angular.mock.module('@'));
+  beforeEach(angular.mock.module('escape-key-directive'));
 
   // create the scope
   beforeEach(inject(function($rootScope) {

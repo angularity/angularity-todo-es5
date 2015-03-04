@@ -7,7 +7,7 @@
 module.exports = function(config) {
   config.set({
     // base path, that will be used to resolve files and exclude
-    basePath: process.cwd(),
+    basePath: '/*ANGULARITY_BASE_PATH*/',
 
     //make sure we use karma-jasmine as the test framework
     frameworks: ['jasmine'],
@@ -22,14 +22,14 @@ module.exports = function(config) {
     // register any plugins which are not siblings of karma in angularity global
     // installation and thus need to be registered manually
     // append to existing value to preserve plugins loaded automatically
-    plugins: [].concat(config.plugins, /*ANGULARITY_PLUGIN_LIST*/),
+    plugins: [].concat(config.plugins).concat(/*ANGULARITY_PLUGIN_LIST*/),
 
     // use dots reporter, as travis terminal does not support escaping sequences
     // possible values: 'dots', 'progress', 'junit', 'teamcity'
     reporters: [].concat(/*ANGULARITY_REPORTER_LIST*/),
 
     // web server port
-    port: 57642,
+    port: 55556,
 
     // enable / disable colors in the output (reporters and logs)
     colors: true,
@@ -58,7 +58,7 @@ module.exports = function(config) {
     singleRun: true,
 
     // report which specs are slower than 500ms
-    reportSlowerThan: 500,
+    reportSlowerThan: 500
   });
 };
 

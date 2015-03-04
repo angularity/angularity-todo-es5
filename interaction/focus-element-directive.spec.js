@@ -2,16 +2,16 @@
 
 var focusElementDirective = require('examplelib/interaction/focus-element-directive');
 
-describe('@', function() {
+describe('focus-element-directive', function() {
   var scope;
   var element;
   var timeout;
 
   // mappings
-  angular.module('@', [ ])
+  angular.module('focus-element-directive', [ ])
     .directive('focus', focusElementDirective.forAttribute('focus'));
 
-  beforeEach(angular.mock.module('@'));
+  beforeEach(angular.mock.module('focus-element-directive'));
 
   // create the scope
   beforeEach(inject(function($rootScope) {

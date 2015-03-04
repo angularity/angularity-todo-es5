@@ -23,7 +23,7 @@ function randomString() {
   return result;
 }
 
-describe('@', function() {
+describe('local-storage', function() {
   'use strict';
 
   var TESTS = [

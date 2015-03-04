@@ -3,14 +3,14 @@
 var TodoController = require('./todo-controller'),
     MockStorage    = require('../../storage/mock-storage');
 
-describe('@', function() {
+describe('todo-controller', function() {
   'use strict';
 
   var scope;
   var storage;
   var state;
 
-  angular.module('@', [ ])
+  angular.module('todo-controller', [ ])
     .controller('TodoController', TodoController);
 
   beforeEach(function() {
@@ -42,7 +42,7 @@ describe('@', function() {
   });
 
   // our temporary module
-  beforeEach(angular.mock.module('@'));
+  beforeEach(angular.mock.module('todo-controller'));
 
   // mock storage
   beforeEach(function () {
