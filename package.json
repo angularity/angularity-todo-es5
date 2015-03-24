@@ -1,11 +1,11 @@
 {
-  "name": "angularity-todo-es5",
+  "name": "angularity-todo-es5-minified",
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "node-bourbon": "1.2.2"
   },
   "bundledDependencies": [
-    "examplelib"
+    "examplelib",
+    "node-bourbon"
   ]
 }
