@@ -1,6 +1,2 @@
 /.idea
-/bower_components
-/node_modules/*
-!/node_modules/examplelib
-/app-*
 npm-debug.log
