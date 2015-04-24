@@ -90,6 +90,12 @@ MockStorage.prototype.put = function put(value) {
 };
 module.exports = MockStorage;
 },{}],7:[function(require,module,exports){
+TodoController.$inject = [
+    '$scope',
+    '$filter',
+    '$state',
+    'storage'
+];
 'use strict';
 function TodoController($scope, $filter, $state, storage) {
     $scope.todos = storage.get() || [];
@@ -179,14 +185,12 @@ function TodoController($scope, $filter, $state, storage) {
         }
     }
 }
-TodoController.$inject = [
-    '$scope',
-    '$filter',
-    '$state',
-    'storage'
-];
 module.exports = TodoController;
 },{}],8:[function(require,module,exports){
+todoRoutes.$inject = [
+    '$stateProvider',
+    '$urlRouterProvider'
+];
 'use strict';
 function todoRoutes($stateProvider, $urlRouterProvider) {
     'use strict';
@@ -197,10 +201,6 @@ function todoRoutes($stateProvider, $urlRouterProvider) {
         controller: require("./controller/todo-controller")
     });
 }
-todoRoutes.$inject = [
-    '$stateProvider',
-    '$urlRouterProvider'
-];
 module.exports = todoRoutes;
 },{"./controller/todo-controller":7,"./view/todo.html":9}],9:[function(require,module,exports){
 module.exports = '<section id="todoapp">\n    <header id="header">\n        <h1>todos</h1>\n        <form id="todo-form" ng-submit="addTodo()">\n            <input id="new-todo" placeholder="What needs to be done?" ng-model="newTodo" autofocus>\n        </form>\n    </header>\n    <section id="main" ng-show="todos && todos.length" ng-cloak>\n        <input id="toggle-all" type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)">\n        <label for="toggle-all">Mark all as complete</label>\n        <ul id="todo-list">\n            <li ng-repeat="todo in todos | filter:statusFilter track by $index" ng-class="{completed: todo.completed, editing: todo == editedTodo}">\n                <div class="view">\n                    <input class="toggle" type="checkbox" ng-model="todo.completed">\n                    <label ng-dblclick="editTodo(todo)">{{todo.title}}</label>\n                    <button class="destroy" ng-click="removeTodo(todo)"></button>\n                </div>\n                <form ng-submit="doneEditing(todo)">\n                    <input class="edit" ng-show="testEditing(todo)" ng-trim="false" ng-model="todo.title" escape="revertEditing(todo)" ng-blur="doneEditing(todo)" focus="testEditing(todo)">\n                </form>\n            </li>\n        </ul>\n    </section>\n    <footer id="footer" ng-show="todos && todos.length" ng-cloak>\n        <span id="todo-count"><strong>{{remainingCount}}</strong>\n            <ng-pluralize count="remainingCount" when="{ one: \'item left\', other: \'items left\' }"></ng-pluralize>\n        </span>\n        <ul id="filters">\n            <li>\n                <a ng-class="{selected: status == \'\'}" href="#/">All</a>\n            </li>\n            <li>\n                <a ng-class="{selected: status == \'active\'}" href="#/active">Active</a>\n            </li>\n            <li>\n                <a ng-class="{selected: status == \'completed\'}" href="#/completed">Completed</a>\n            </li>\n        </ul>\n        <button id="clear-completed" ng-click="clearCompletedTodos()" ng-show="completedCount">Clear completed ({{completedCount}})</button>\n    </footer>\n</section>\n';

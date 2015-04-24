@@ -248,6 +248,12 @@ MockStorage.prototype.put = function put(value) {
 };
 module.exports = MockStorage;
 },{}],8:[function(require,module,exports){
+TodoController.$inject = [
+    '$scope',
+    '$filter',
+    '$state',
+    'storage'
+];
 'use strict';
 function TodoController($scope, $filter, $state, storage) {
     $scope.todos = storage.get() || [];
@@ -337,12 +343,6 @@ function TodoController($scope, $filter, $state, storage) {
         }
     }
 }
-TodoController.$inject = [
-    '$scope',
-    '$filter',
-    '$state',
-    'storage'
-];
 module.exports = TodoController;
 },{}],9:[function(require,module,exports){
 'use strict';
@@ -355,9 +355,9 @@ describe('todo-controller', function () {
     angular.module('todo-controller', []).controller('TodoController', TodoController);
     beforeEach(function () {
         jasmine.addMatchers({
-            toHaveProperty: function toHaveProperty() {
+            toHaveProperty: function () {
                 return {
-                    compare: function compare(actual, expected) {
+                    compare: function (actual, expected) {
                         var pass = typeof actual === 'object' && typeof expected === 'string' && expected in actual;
                         return {
                             pass: pass,
@@ -366,9 +366,9 @@ describe('todo-controller', function () {
                     }
                 };
             },
-            toHaveMethod: function toHaveMethod() {
+            toHaveMethod: function () {
                 return {
-                    compare: function compare(actual, expected) {
+                    compare: function (actual, expected) {
                         var pass = typeof actual === 'object' && typeof expected === 'string' && expected in actual && typeof actual[expected] === 'function';
                         return {
                             pass: pass,
