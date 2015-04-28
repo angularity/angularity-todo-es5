@@ -355,9 +355,9 @@ describe('todo-controller', function () {
     angular.module('todo-controller', []).controller('TodoController', TodoController);
     beforeEach(function () {
         jasmine.addMatchers({
-            toHaveProperty: function () {
+            toHaveProperty: function toHaveProperty() {
                 return {
-                    compare: function (actual, expected) {
+                    compare: function compare(actual, expected) {
                         var pass = typeof actual === 'object' && typeof expected === 'string' && expected in actual;
                         return {
                             pass: pass,
@@ -366,9 +366,9 @@ describe('todo-controller', function () {
                     }
                 };
             },
-            toHaveMethod: function () {
+            toHaveMethod: function toHaveMethod() {
                 return {
-                    compare: function (actual, expected) {
+                    compare: function compare(actual, expected) {
                         var pass = typeof actual === 'object' && typeof expected === 'string' && expected in actual && typeof actual[expected] === 'function';
                         return {
                             pass: pass,
