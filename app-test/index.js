@@ -248,12 +248,6 @@ MockStorage.prototype.put = function put(value) {
 };
 module.exports = MockStorage;
 },{}],8:[function(require,module,exports){
-TodoController.$inject = [
-    '$scope',
-    '$filter',
-    '$state',
-    'storage'
-];
 'use strict';
 function TodoController($scope, $filter, $state, storage) {
     $scope.todos = storage.get() || [];
@@ -343,6 +337,12 @@ function TodoController($scope, $filter, $state, storage) {
         }
     }
 }
+TodoController.$inject = [
+    '$scope',
+    '$filter',
+    '$state',
+    'storage'
+];
 module.exports = TodoController;
 },{}],9:[function(require,module,exports){
 'use strict';
