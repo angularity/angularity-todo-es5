@@ -1,0 +1,5 @@
+.unused {
+  single-quoted: url('./blank.jpg');
+  double-quoted: url("./blank.jpg");
+  unquoted: url(./blank.jpg);
+}
