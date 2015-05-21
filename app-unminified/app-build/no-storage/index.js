@@ -174,7 +174,7 @@ function TodoController($scope, $filter, $state, storage) {
             break;
         default:
             $scope.status = '';
-            $scope.statusFilter = null;
+            $scope.statusFilter = {};
             break;
         }
     }
