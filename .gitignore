@@ -1,2 +1,4 @@
 /.idea
+/app-build
+/app-release
 npm-debug.log
