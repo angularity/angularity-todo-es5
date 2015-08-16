@@ -33,10 +33,16 @@ function config() {
             loaders   : [
                 {
                     test  : /\.css$/,
-                    loader: ExtractTextPlugin.extract('style', 'css?minimize&sourceMap!resolve-url?sourceMap')
+                    loader: ExtractTextPlugin.extract(
+                        'style',
+                        'css?minimize&sourceMap!resolve-url?sourceMap'
+                    )
                 }, {
                     test  : /\.scss$/,
-                    loader: ExtractTextPlugin.extract('style', 'css?minimize&sourceMap!resolve-url?sourceMap!sass?sourceMap')
+                    loader: ExtractTextPlugin.extract(
+                        'style',
+                        'css?minimize&sourceMap!resolve-url?sourceMap!sass?sourceMap'
+                    )
                 }, {
                     test   : /\.(jpe?g|png|gif|svg)$/i,
                     loaders: [
@@ -50,8 +56,12 @@ function config() {
                     test  : /\.(eot|ttf)$/,
                     loader: 'file?name=/assets/[hash].[ext]'
                 }, {
-                    test  : /\.js$/,
-                    loader: 'babel?stage=4'
+                    test   : /\.js$/,
+                    exclude: /bower_components/,
+                    loaders: [
+                        'babel?stage=4?sourceMap',
+                        'ng-annotate?sourceMap'
+                    ]
                 }, {
                     test  : /\.html?$/,
                     loader: 'html'
@@ -65,8 +75,10 @@ function config() {
                     'bower.json', ['main']
                 )
             ),
-            new NgAnnotatePlugin({
-                add: true
+            new webpack.optimize.UglifyJsPlugin({
+                compress: {
+                    warnings: false
+                }
             }),
             new ExtractTextPlugin('index.css'),
             new HtmlWebpackPlugin({
@@ -79,4 +91,3 @@ function config() {
 }
 
 module.exports = config();
-

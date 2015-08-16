@@ -5,7 +5,7 @@ var todoRoutes            = require('../todo/todo-routes'),
 
 import 'jquery';
 import 'angular';
-import 'angular-ui-bootstrap';
+import 'angular-bootstrap';
 import 'angular-ui-router';
 
 import '../style/bootstrap-stuff.scss';

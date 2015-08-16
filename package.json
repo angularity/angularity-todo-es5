@@ -23,6 +23,7 @@
     "jshint": "^2.8.0",
     "jshint-loader": "^0.8.3",
     "loader-utils": "^0.2.11",
+    "ng-annotate-loader": "0.0.6",
     "ng-annotate-webpack-plugin": "^0.1.2",
     "node-sass": "^3.2.0",
     "rework": "^1.0.1",
