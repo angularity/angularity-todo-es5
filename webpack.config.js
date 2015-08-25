@@ -1,6 +1,5 @@
 var webpack           = require('webpack'),
     CleanPlugin       = require('clean-webpack-plugin'),
-    NgAnnotatePlugin  = require('ng-annotate-webpack-plugin'),
     ExtractTextPlugin = require('extract-text-webpack-plugin'),
     HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -10,6 +9,7 @@ function config() {
     // define Webpack configuration object to be exported
     return {
         context : __dirname,
+        cache   : true,
         entry   : './app/index.js',
         devtools: 'inline-source-map',
         output  : {
@@ -18,7 +18,7 @@ function config() {
         },
         resolve : {
             alias: {
-                'npm': __dirname + '/node_modules'
+                npm: __dirname + '/node_modules'
             },
             root : __dirname + '/bower_components'
         },
