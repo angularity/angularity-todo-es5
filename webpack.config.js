@@ -1,7 +1,11 @@
-var webpack           = require('webpack'),
-    CleanPlugin       = require('clean-webpack-plugin'),
-    ExtractTextPlugin = require('extract-text-webpack-plugin'),
-    HtmlWebpackPlugin = require('html-webpack-plugin');
+var webpack               = require('webpack'),
+    CleanPlugin           = require('clean-webpack-plugin'),
+    ExtractTextPlugin     = require('extract-text-webpack-plugin'),
+    HtmlWebpackPlugin     = require('html-webpack-plugin'),
+    ESMangleWebpackPlugin = require('esmangle-webpack-plugin'),
+    BrowserSyncPlugin     = require('browser-sync-webpack-plugin');
+
+var slash = require('slash');
 
 function config() {
     'use strict';
@@ -57,6 +61,10 @@ function config() {
                     loader: 'file?name=/assets/[hash].[ext]'
                 }, {
                     test   : /\.js$/,
+                    include: /bower_components/,
+                    loader : 'ng-annotate?sourceMap'
+                }, {
+                    test   : /\.js$/,
                     exclude: /bower_components/,
                     loaders: [
                         'babel?stage=4?sourceMap',
@@ -75,16 +83,25 @@ function config() {
                     'bower.json', ['main']
                 )
             ),
-            new webpack.optimize.UglifyJsPlugin({
-                compress: {
-                    warnings: false
-                }
-            }),
             new ExtractTextPlugin('index.css'),
             new HtmlWebpackPlugin({
                 title   : 'Custom template',
                 template: __dirname + '/app/index.html',
                 inject  : 'body'
+            }),
+            new webpack.optimize.DedupePlugin(),
+            new ESMangleWebpackPlugin(),
+            new BrowserSyncPlugin({
+                host  : 'localhost',
+                port  : 55555,
+                server: {
+                    baseDir: ['app-build'],
+                    routes : ['', 'bower_components', 'app-build']
+                        .reduce(function mapRoutes(result, path) {
+                            result['/' + slash(path)] = path; // result['/<path>'] = <path>
+                            return result;
+                        }, {})
+                }
             })
         ]
     };
