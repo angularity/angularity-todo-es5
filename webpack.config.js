@@ -73,6 +73,9 @@ function config() {
                 }, {
                     test  : /\.html?$/,
                     loader: 'html'
+                }, {
+                    test  : /\.json?$/,
+                    loader: 'json'
                 }
             ]
         },
