@@ -17,13 +17,11 @@ function config() {
         context : __dirname,
         cache   : true,
         entry   : {
-            app   : './app/index.js',
-            vendor: [
-                'jquery',
-                'angular',
-                'angular-bootstrap',
-                'angular-ui-router'
-            ]
+            app   : [
+                './app/index.js',
+                './app/index.scss'
+            ],
+            vendor: Object.keys(require('./bower.json').dependencies)
         },
         devtools: 'inline-source-map',
         output  : {

@@ -5,11 +5,11 @@
   "dependencies": {
     "jquery": "latest",
     "angular": "latest",
-    "bootstrap-sass-official": "3.3.0",
     "angular-bootstrap": "latest",
     "angular-ui-router": "latest"
   },
   "devDependencies": {
+    "bootstrap-sass-official": "3.3.0",
     "angular-mocks": "latest"
   },
   "resolutions": {
