@@ -17,16 +17,16 @@ function config() {
         context : __dirname,
         cache   : true,
         entry   : {
-            app   : [
+            vendor: Object.keys(require('./bower.json').dependencies),
+            index : [
                 './app/index.js',
                 './app/index.scss'
-            ],
-            vendor: Object.keys(require('./bower.json').dependencies)
+            ]
         },
-        devtools: 'inline-source-map',
+        devtools: 'eval-source-map',
         output  : {
             path    : __dirname + '/app-build',
-            filename: 'index.js'
+            filename: 'index.[hash].js'
         },
         resolve : {
             alias: {
@@ -76,7 +76,7 @@ function config() {
                     exclude: /bower_components/,
                     loaders: [
                         'nginject?sourceMap',
-                        'babel?stage=4&sourceMap'
+                        'babel?stage=4&sourceMap&ignore=buffer' // https://github.com/feross/buffer/issues/79
                     ]
                 }, {
                     test  : /\.html?$/,
@@ -96,8 +96,14 @@ function config() {
             new webpack.ResolverPlugin([
                 new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('bower.json', ['main'])
             ]),
-            new ExtractTextPlugin('index.css'),
-            new webpack.optimize.CommonsChunkPlugin(['vendor'], 'vendor.js'),
+            new webpack.ProvidePlugin({
+                $     : 'jquery',
+                jQuery: 'jquery'
+            }),
+            new ExtractTextPlugin('[name].[contenthash].css', {
+                allChunks: true
+            }),
+            new webpack.optimize.CommonsChunkPlugin(['vendor'], 'vendor.[hash].js'),
             new HtmlPlugin({
                 title   : 'Custom template',
                 template: __dirname + '/app/index.html',
