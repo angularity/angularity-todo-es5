@@ -26,7 +26,7 @@ function config() {
         devtools: 'eval-source-map',
         output  : {
             path    : __dirname + '/app-build',
-            filename: 'index.[hash].js'
+            filename: 'assets/index.[hash].js'
         },
         resolve : {
             alias: {
@@ -100,10 +100,10 @@ function config() {
                 $     : 'jquery',
                 jQuery: 'jquery'
             }),
-            new ExtractTextPlugin('[name].[contenthash].css', {
+            new ExtractTextPlugin('assets/[name].[contenthash].css', {
                 allChunks: true
             }),
-            new webpack.optimize.CommonsChunkPlugin(['vendor'], 'vendor.[hash].js'),
+            new webpack.optimize.CommonsChunkPlugin(['vendor'], 'assets/vendor.[hash].js'),
             new HtmlPlugin({
                 title   : 'Custom template',
                 template: __dirname + '/app/index.html',
