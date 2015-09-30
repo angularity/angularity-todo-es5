@@ -75,8 +75,8 @@ function config() {
                     test   : /\.js$/,
                     exclude: /bower_components/,
                     loaders: [
-                        'nginject?sourceMap',
                         'ng-annotate?sourceMap',
+                        'nginject?sourceMap',
                         'babel?stage=4&sourceMap&ignore=buffer' // https://github.com/feross/buffer/issues/79
                     ]
                 }, {
