@@ -116,8 +116,8 @@ function config() {
                 host  : 'localhost',
                 port  : 55555,
                 server: {
-                    baseDir: ['app-build'],
-                    routes : ['/']
+                    baseDir: 'app-build',
+                    routes : {'/': ''}
                 }
             })
         ]
