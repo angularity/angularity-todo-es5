@@ -8,33 +8,33 @@ var webpack           = require('webpack'),
     BrowserSyncPlugin = require('browser-sync-webpack-plugin'),
     OmitTildePlugin   = require('omit-tilde-webpack-plugin');
 
-var slash = require('slash');
-
 function config() {
 
     // define Webpack configuration object to be exported
     return {
-        context : __dirname,
-        cache   : true,
-        entry   : {
+        context: __dirname,
+        cache  : true,
+        devtool: 'source-map',
+        entry  : {
             vendor: Object.keys(require('./bower.json').dependencies),
             index : [
                 './app/index.js',
                 './app/index.scss'
             ]
         },
-        devtools: 'eval-source-map',
-        output  : {
-            path    : __dirname + '/app-build',
-            filename: 'assets/index.[hash].js'
+        output : {
+            path                                 : __dirname + '/app-build',
+            filename                             : 'assets/index.[hash].js',
+            devtoolModuleFilenameTemplate        : '[absolute-resource-path]',
+            devtoolFallbackModuleFilenameTemplate: '[absolute-resource-path]?[hash]'
         },
-        resolve : {
+        resolve: {
             alias: {
                 npm: __dirname + '/node_modules'
             },
             root : __dirname + '/bower_components'
         },
-        module  : {
+        module : {
             preloaders: [
                 {
                     test   : /\.js?$/,
@@ -76,6 +76,7 @@ function config() {
                     exclude: /bower_components/,
                     loaders: [
                         'nginject?sourceMap',
+                        'ng-annotate?sourceMap',
                         'babel?stage=4&sourceMap&ignore=buffer' // https://github.com/feross/buffer/issues/79
                     ]
                 }, {
@@ -87,7 +88,7 @@ function config() {
                 }
             ]
         },
-        plugins : [
+        plugins: [
             new CleanPlugin(['app-build']),
             new OmitTildePlugin({
                 include  : ['package.json', 'bower.json'],
@@ -116,11 +117,7 @@ function config() {
                 port  : 55555,
                 server: {
                     baseDir: ['app-build'],
-                    routes : ['', 'bower_components', 'app-build']
-                        .reduce(function mapRoutes(result, path) {
-                            result['/' + slash(path)] = path; // result['/<path>'] = <path>
-                            return result;
-                        }, {})
+                    routes : ['/']
                 }
             })
         ]
