@@ -24,7 +24,7 @@ function config() {
         },
         output : {
             path                                 : __dirname + '/app-build',
-            filename                             : 'assets/index.[hash].js',
+            filename                             : 'assets/[name].[chunkhash].js',
             devtoolModuleFilenameTemplate        : '[absolute-resource-path]',
             devtoolFallbackModuleFilenameTemplate: '[absolute-resource-path]?[hash]'
         },
@@ -104,7 +104,7 @@ function config() {
             new ExtractTextPlugin('assets/[name].[contenthash].css', {
                 allChunks: true
             }),
-            new webpack.optimize.CommonsChunkPlugin(['vendor'], 'assets/vendor.[hash].js'),
+            new webpack.optimize.CommonsChunkPlugin(['vendor'], 'assets/vendor.[chunkhash].js'),
             new HtmlPlugin({
                 title   : 'Custom template',
                 template: __dirname + '/app/index.html',
