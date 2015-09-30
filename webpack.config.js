@@ -104,7 +104,10 @@ function config() {
             new ExtractTextPlugin('assets/[name].[contenthash].css', {
                 allChunks: true
             }),
-            new webpack.optimize.CommonsChunkPlugin(['vendor'], 'assets/vendor.[chunkhash].js'),
+            new webpack.optimize.CommonsChunkPlugin({
+                name     : 'vendor',
+                minChunks: Infinity
+            }),
             new HtmlPlugin({
                 title   : 'Custom template',
                 template: __dirname + '/app/index.html',
