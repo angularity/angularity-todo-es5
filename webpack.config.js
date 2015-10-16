@@ -12,6 +12,7 @@ function config() {
 
     // define Webpack configuration object to be exported
     return {
+        name   : require('./package.json').name,
         context: __dirname,
         cache  : true,
         devtool: 'source-map',
@@ -53,7 +54,7 @@ function config() {
                     test  : /\.scss$/,
                     loader: ExtractTextPlugin.extract(
                         'style',
-                        'css?minimize&sourceMap!resolve-url?sourceMap!sass'
+                        'css?minimize&sourceMap!resolve-url?sourceMap!sass?sourceMap'
                     )
                 }, {
                     test   : /\.(jpe?g|png|gif|svg)$/i,
