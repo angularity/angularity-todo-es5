@@ -47,13 +47,13 @@ function config() {
                 {
                     test  : /\.css$/,
                     loader: ExtractTextPlugin.extract(
-                        'style',
+                        '',
                         'css?minimize&sourceMap!resolve-url?sourceMap'
                     )
                 }, {
                     test  : /\.scss$/,
                     loader: ExtractTextPlugin.extract(
-                        'style',
+                        '',
                         'css?minimize&sourceMap!resolve-url?sourceMap!sass?sourceMap'
                     )
                 }, {
