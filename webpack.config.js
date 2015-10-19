@@ -89,6 +89,9 @@ function config() {
                 }
             ]
         },
+        node   : {
+            fs: 'empty'
+        },
         plugins: [
             new CleanPlugin(['app-build']),
             new OmitTildePlugin({
