@@ -102,8 +102,9 @@ function config() {
                 new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('bower.json', ['main'])
             ]),
             new webpack.ProvidePlugin({
-                $     : 'jquery',
-                jQuery: 'jquery'
+                $              : 'jquery',
+                jQuery         : 'jquery',
+                'window.jQuery': 'jquery'
             }),
             new ExtractTextPlugin('assets/[name].[contenthash].css', {
                 allChunks: true
