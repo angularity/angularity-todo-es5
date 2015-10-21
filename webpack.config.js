@@ -1,5 +1,7 @@
 'use strict';
 
+var path = require('path');
+
 var webpack           = require('webpack'),
     CleanPlugin       = require('clean-webpack-plugin'),
     ExtractTextPlugin = require('extract-text-webpack-plugin'),
@@ -12,30 +14,33 @@ function config() {
 
     // define Webpack configuration object to be exported
     return {
-        name   : require('./package.json').name,
-        context: __dirname,
-        cache  : true,
-        devtool: 'source-map',
-        entry  : {
+        context      : __dirname,
+        cache        : true,
+        devtool      : 'source-map',
+        entry        : {
             vendor: Object.keys(require('./bower.json').dependencies),
             index : [
                 './app/index.js',
                 './app/index.scss'
             ]
         },
-        output : {
-            path                                 : __dirname + '/app-build',
+        output       : {
+            path                                 : path.join(__dirname, 'app-build'),
             filename                             : 'assets/[name].[chunkhash].js',
             devtoolModuleFilenameTemplate        : '[absolute-resource-path]',
             devtoolFallbackModuleFilenameTemplate: '[absolute-resource-path]?[hash]'
         },
-        resolve: {
-            alias: {
-                npm: __dirname + '/node_modules'
+        resolve      : {
+            alias   : {
+                npm: path.join(__dirname, 'node_modules')
             },
-            root : __dirname + '/bower_components'
+            root    : path.resolve('bower_components'),
+            fallback: path.join(__dirname, 'node_modules')
         },
-        module : {
+        resolveLoader: {
+            fallback: path.join(__dirname, 'node_modules')
+        },
+        module       : {
             preloaders: [
                 {
                     test   : /\.js?$/,
@@ -89,10 +94,10 @@ function config() {
                 }
             ]
         },
-        node   : {
+        node         : {
             fs: 'empty'
         },
-        plugins: [
+        plugins      : [
             new CleanPlugin(['app-build']),
             new OmitTildePlugin({
                 include  : ['package.json', 'bower.json'],
@@ -115,7 +120,7 @@ function config() {
             }),
             new HtmlPlugin({
                 title   : 'Custom template',
-                template: __dirname + '/app/index.html',
+                template: path.join(__dirname, 'app/index.html'),
                 inject  : 'body'
             }),
             new webpack.optimize.DedupePlugin(),
