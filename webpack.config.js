@@ -43,7 +43,7 @@ function config() {
         module       : {
             preloaders: [
                 {
-                    test   : /\.js?$/,
+                    test   : /\.js$/,
                     exclude: './node_modules',
                     loader : 'jshint'
                 }
