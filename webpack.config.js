@@ -2,13 +2,25 @@
 
 var path = require('path');
 
-var webpack           = require('webpack'),
-    CleanPlugin       = require('clean-webpack-plugin'),
-    ExtractTextPlugin = require('extract-text-webpack-plugin'),
-    HtmlPlugin        = require('html-webpack-plugin'),
-    ESManglePlugin    = require('esmangle-webpack-plugin'),
-    BrowserSyncPlugin = require('browser-sync-webpack-plugin'),
-    OmitTildePlugin   = require('omit-tilde-webpack-plugin');
+var webpack            = require('webpack'),
+    CleanPlugin        = require('clean-webpack-plugin'),
+    ExtractTextPlugin  = require('extract-text-webpack-plugin'),
+    HtmlPlugin         = require('html-webpack-plugin'),
+    ESManglePlugin     = require('esmangle-webpack-plugin'),
+    BrowserSyncPlugin  = require('browser-sync-webpack-plugin'),
+    BowerWebpackPlugin = require('bower-webpack-plugin'),
+    OmitTildePlugin    = require('omit-tilde-webpack-plugin');
+
+function bowerModules(bowerFilePath) {
+    var json = require(path.resolve(bowerFilePath));
+    return json.dependencies && Object.keys(json.dependencies)
+            .reduce(eachDependency, []) || [];
+
+    function eachDependency(list, name) {
+        var nested = bowerModules(path.resolve('bower_components', name, 'bower.json'));
+        return list.concat(name).concat(nested);
+    }
+}
 
 function config() {
 
@@ -18,7 +30,7 @@ function config() {
         cache        : true,
         devtool      : 'source-map',
         entry        : {
-            vendor: Object.keys(require('./bower.json').dependencies),
+            vendor: bowerModules('bower.json'),
             index : [
                 './app/index.js',
                 './app/index.scss'
@@ -43,53 +55,62 @@ function config() {
         module       : {
             preloaders: [
                 {
-                    test   : /\.js$/,
+                    test   : /\.js$/i,
                     exclude: './node_modules',
                     loader : 'jshint'
                 }
             ],
             loaders   : [
+
+                // some obscure modules like to 'require()' angular, but bower angular does not export anything
                 {
-                    test  : /\.css$/,
+                    test   : /[\\\/]angular\.js$/i,
+                    include: /[\\\/]bower_components[\\\/]/i,
+                    loader : 'exports?angular'
+                },
+
+                // supported file types
+                {
+                    test  : /\.css$/i,
                     loader: ExtractTextPlugin.extract(
                         '',
                         'css?minimize&sourceMap!resolve-url?sourceMap'
                     )
                 }, {
-                    test  : /\.scss$/,
+                    test  : /\.scss$/i,
                     loader: ExtractTextPlugin.extract(
                         '',
                         'css?minimize&sourceMap!resolve-url?sourceMap!sass?sourceMap'
                     )
                 }, {
-                    test   : /\.(jpe?g|png|gif|svg)$/i,
+                    test   : /\.(jpe?g|png|gif|svg)([#?].*)?$/i,
                     loaders: [
                         'file?hash=sha512&digest=hex&name=/assets/[hash].[ext]',
                         'image-webpack?optimizationLevel=7&interlaced=false'
                     ]
                 }, {
-                    test  : /\.woff2?$/,
+                    test  : /\.woff2?([#?].*)?$/i,
                     loader: 'url?limit=10000&mimetype=application/font-woff&name=/assets/[hash].[ext]'
                 }, {
-                    test  : /\.(eot|ttf)$/,
+                    test  : /\.(eot|ttf|ico)([#?].*)?$/i,
                     loader: 'file?name=/assets/[hash].[ext]'
                 }, {
-                    test   : /\.js$/,
-                    include: /bower_components/,
+                    test   : /\.js$/i,
+                    include: /[\\\/]bower_components[\\\/]/i,
                     loader : 'ng-annotate?sourceMap'
                 }, {
-                    test   : /\.js$/,
-                    exclude: /bower_components/,
+                    test   : /\.js$/i,
+                    exclude: /[\\\/]bower_components[\\\/]/i,
                     loaders: [
                         'ng-annotate?sourceMap',
-                        'nginject?sourceMap',
+                        'nginject?sourceMap&deprecate',
                         'babel?stage=4&sourceMap&ignore=buffer' // https://github.com/feross/buffer/issues/79
                     ]
                 }, {
-                    test  : /\.html?$/,
-                    loader: 'html'
+                    test  : /\.html?$/i,
+                    loader: 'html?removeComments=false&attrs=img:src link:href'
                 }, {
-                    test  : /\.json$/,
+                    test  : /\.json$/i,
                     loader: 'json'
                 }
             ]
@@ -103,9 +124,10 @@ function config() {
                 include  : ['package.json', 'bower.json'],
                 deprecate: true
             }),
-            new webpack.ResolverPlugin([
-                new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('bower.json', ['main'])
-            ]),
+            new BowerWebpackPlugin({
+                includes                       : /\.((js|css)|(woff2?|eot|ttf)([#?].*)?)$/i,
+                searchResolveModulesDirectories: false
+            }),
             new webpack.ProvidePlugin({
                 $              : 'jquery',
                 jQuery         : 'jquery',
