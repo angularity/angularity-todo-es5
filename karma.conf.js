@@ -4,17 +4,20 @@
 
 // Karma configuration
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
     // base path, that will be used to resolve files and exclude
-    basePath: '/*ANGULARITY_BASE_PATH*/',
+    basePath: process.cwd(),
 
     //make sure we use karma-jasmine as the test framework
     frameworks: ['jasmine'],
 
     // list of files / patterns to load in the browser
     // angularity will package unit tests and append to the `files` array
-    files: [].concat(/*ANGULARITY_FILE_LIST*/),
+    files: [
+      'app-build/assets/vendor.*.js',
+      'app-build/assets/test.*.js'
+    ],
 
     // list of files to exclude
     exclude: [],
@@ -22,11 +25,16 @@ module.exports = function(config) {
     // register any plugins which are not siblings of karma in angularity global
     // installation and thus need to be registered manually
     // append to existing value to preserve plugins loaded automatically
-    plugins: [].concat(config.plugins).concat(/*ANGULARITY_PLUGIN_LIST*/),
+    plugins: [].concat(config.plugins).concat(
+      require('karma-sourcemap-loader'),
+      require('karma-chrome-launcher'),
+      require('karma-spec-reporter'),
+      require('karma-jasmine')
+    ),
 
     // use dots reporter, as travis terminal does not support escaping sequences
     // possible values: 'dots', 'progress', 'junit', 'teamcity'
-    reporters: [].concat(/*ANGULARITY_REPORTER_LIST*/),
+    reporters: ['spec'],
 
     // web server port
     port: 55556,
