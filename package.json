@@ -13,7 +13,8 @@
     "build-unminified": "cross-env ANGULARITYTODOES5_NO_MINIFY=true webpack -d --progress",
     "watch": "webpack -d --watch",
     "watch-unminified": "cross-env ANGULARITYTODOES5_NO_MINIFY=true webpack -d --watch",
-    "test": "cross-env ANGULARITYTODOES5_NO_APP=true npm run build && karma start"
+    "test": "cross-env ANGULARITYTODOES5_NO_APP=true npm run build && karma start",
+    "release": "cross-env ANGULARITYTODOES5_RELEASE=true npm run build"
   },
   "devDependencies": {
     "jasmine-core": "^2.4.1",
