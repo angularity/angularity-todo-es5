@@ -13,9 +13,9 @@
     "build-unminified": "cross-env ANGULARITYTODOES5_NO_MINIFY=true webpack -d --progress",
     "watch": "webpack -d --watch",
     "watch-unminified": "cross-env ANGULARITYTODOES5_NO_MINIFY=true webpack -d --watch",
-    "release": "cross-env ANGULARITYTODOES5_RELEASE=true npm run build",
-    "test": "cross-env ANGULARITYTODOES5_NO_APP=true npm run build && karma start",
-    "ci": "cross-env ANGULARITYTODOES5_KARMA_REPORTER=teamcity npm run test"
+    "release": "cross-env ANGULARITYTODOES5_RELEASE=true webpack -d --progress",
+    "test": "cross-env ANGULARITYTODOES5_NO_APP=true webpack -d --progress && karma start",
+    "ci": "cross-env ANGULARITYTODOES5_KARMA_REPORTER=teamcity cross-env ANGULARITYTODOES5_NO_APP=true webpack -d --progress && karma start"
   },
   "devDependencies": {
     "webpack-angularity-solution": "latest",
