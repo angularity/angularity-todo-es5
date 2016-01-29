@@ -13,16 +13,12 @@
     "build-unminified": "cross-env ANGULARITYTODOES5_NO_MINIFY=true webpack -d --progress",
     "watch": "webpack -d --watch",
     "watch-unminified": "cross-env ANGULARITYTODOES5_NO_MINIFY=true webpack -d --watch",
+    "release": "cross-env ANGULARITYTODOES5_RELEASE=true npm run build",
     "test": "cross-env ANGULARITYTODOES5_NO_APP=true npm run build && karma start",
-    "release": "cross-env ANGULARITYTODOES5_RELEASE=true npm run build"
+    "ci": "cross-env ANGULARITYTODOES5_KARMA_REPORTER=teamcity npm run test"
   },
   "devDependencies": {
-    "jasmine-core": "^2.4.1",
-    "karma": "^0.13.15",
-    "karma-chrome-launcher": "^0.2.2",
-    "karma-jasmine": "^0.3.6",
-    "karma-sourcemap-loader": "^0.3.6",
-    "karma-spec-reporter": "0.0.23",
-    "webpack-angularity-solution": "angularity/webpack-angularity-solution"
+    "webpack-angularity-solution": "latest",
+    "karma-angularity-solution": "latest"
   }
 }
