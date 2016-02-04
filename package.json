@@ -10,12 +10,12 @@
   ],
   "scripts": {
     "build": "webpack -d --progress",
-    "build-unminified": "cross-env ANGULARITYTODOES5_NO_MINIFY=true webpack -d --progress",
+    "build-unminified": "cross-env NO_MINIFY=true webpack -d --progress",
     "watch": "webpack -d --watch",
-    "watch-unminified": "cross-env ANGULARITYTODOES5_NO_MINIFY=true webpack -d --watch",
-    "release": "cross-env ANGULARITYTODOES5_RELEASE=true webpack -d --progress",
-    "test": "cross-env ANGULARITYTODOES5_NO_APP=true webpack -d --progress && karma start",
-    "ci": "cross-env ANGULARITYTODOES5_KARMA_REPORTER=teamcity cross-env ANGULARITYTODOES5_NO_APP=true webpack -d --progress && karma start"
+    "watch-unminified": "cross-env NO_MINIFY=true webpack -d --watch",
+    "release": "cross-env RELEASE=true webpack -d --progress",
+    "test": "cross-env NO_APP=true webpack -d --progress && karma start",
+    "ci": "cross-env KARMA_REPORTER=teamcity cross-env NO_APP=true webpack -d --progress && karma start"
   },
   "devDependencies": {
     "webpack-angularity-solution": "latest",
