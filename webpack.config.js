@@ -1,6 +1,8 @@
 /* global process:true */
 
-module.exports = require('webpack-angularity-solution')(process.env, {
+var angularity = require('webpack-angularity-solution');
+
+module.exports = angularity(process.env, {
     globals: {
         $              : 'jquery',
         jQuery         : 'jquery',
