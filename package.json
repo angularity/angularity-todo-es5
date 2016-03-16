@@ -18,7 +18,8 @@
     "ci": "cross-env KARMA_REPORTER=teamcity MODE=test webpack -d --progress && karma start"
   },
   "devDependencies": {
-    "webpack-angularity-solution": "latest",
-    "karma-angularity-solution": "latest"
+    "karma-angularity-solution": "^1.0.0",
+    "webpack-angularity-solution": "^1.0.0",
+    "webpack-notifier": "^1.3.0"
   }
 }
