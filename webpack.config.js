@@ -10,12 +10,7 @@ const GLOBALS = {
 
 module.exports = angularity(process.env, {globals: GLOBALS})
     .define('common')
-        .append(addPlugin)
+        .plugin('notifier', require('webpack-notifier'), [{title: 'Webpack'}])
     .include(process.env.MODE)
     .otherwise('app,test')
     .resolve();
-
-function addPlugin(configurator, options) {
-  return configurator
-    .plugin('notifier', require('webpack-notifier'), [{title: 'Webpack'}]);
-}

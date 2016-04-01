@@ -15,11 +15,11 @@
     "watch-unminified": "cross-env UNMINIFIED=true webpack -d --watch",
     "release": "cross-env MODE=release webpack -d --progress",
     "test": "cross-env MODE=test webpack -d --progress && karma start",
-    "ci": "cross-env MODE='test,release' webpack -d --progress && cross-env REPORTER=teamcity karma start"
+    "ci": "cross-env MODE='test,release' webpack -d && cross-env REPORTER=teamcity karma start"
   },
   "devDependencies": {
     "karma-angularity-solution": "^1.0.0",
-    "webpack-angularity-solution": "^1.0.0",
+    "webpack-angularity-solution": "^1.2.0",
     "webpack-notifier": "^1.3.0"
   }
 }
