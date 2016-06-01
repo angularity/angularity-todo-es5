@@ -9,13 +9,13 @@
     "examplelib"
   ],
   "scripts": {
-    "build": "webpack -d --progress",
-    "build-unminified": "cross-env UNMINIFIED=true webpack -d --progress",
-    "watch": "webpack -d --watch",
-    "watch-unminified": "cross-env UNMINIFIED=true webpack -d --watch",
-    "release": "cross-env MODE=release webpack -d --progress",
-    "test": "cross-env MODE=test webpack -d --progress && karma start",
-    "ci": "cross-env NAMES=release* MODE='test,release' webpack -d && cross-env REPORTER=teamcity karma start"
+    "build": "webpack --progress",
+    "build-unminified": "cross-env UNMINIFIED=true webpack --progress",
+    "watch": "webpack --watch",
+    "watch-unminified": "cross-env UNMINIFIED=true webpack --watch",
+    "release": "cross-env MODE=release webpack --progress",
+    "test": "cross-env MODE=test webpack --progress && karma start",
+    "ci": "cross-env NAMES=release* MODE='test,release' webpack && cross-env REPORTER=teamcity karma start"
   },
   "devDependencies": {
     "karma-angularity-solution": "^1.0.0",
