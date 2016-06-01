@@ -8,7 +8,7 @@ const GLOBALS = {
     'window.jQuery': 'jquery'
 };
 
-module.exports = angularity(process.env, {globals: GLOBALS})
+module.exports = angularity({globals: GLOBALS}, process.env)
     .define('common')
         .plugin('notifier', require('webpack-notifier'), [{title: 'Webpack'}])
     .include(process.env.MODE)
